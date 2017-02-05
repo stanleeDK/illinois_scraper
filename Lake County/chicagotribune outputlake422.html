@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+
+  <!-- Metadata -->
+  <title>Chicago Tribune - Illinois Property Transfers</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="http://media.apps.chicagotribune.com/bootstrap/v2.3.2-ctredesign.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="http://media.apps.chicagotribune.com/bootstrap/v2.3.2-ctredesign.3/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="http://media.apps.chicagotribune.com/ngux/static/external-branding-new.css" />
+
+  <!-- Javascript -->
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="http://media.apps.chicagotribune.com/bootstrap/v2.3.2-ctredesign.3/js/bootstrap.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+	<meta name="verify-v1" content="ZdrSBuMYWzP9nhAjGgQyBHwhGpyW+5T5k6V3h4zvyNg=" />
+	<meta name="google-site-verification" content="ZdrSBuMYWzP9nhAjGgQyBHwhGpyW+5T5k6V3h4zvyNg=" />
+	
+	<link href="/public/css/re_cobrand.css" rel="stylesheet" type="text/css" />
+    <script src="/public/js/prototype.js" type="text/javascript"></script>
+	<script src="/public/js/checkout.js" type="text/javascript"></script>
+	<script src="/public/js/common.js" type="text/javascript"></script>
+	      
+<script src="http://maps.google.com/maps/api/js?" type="text/javascript"></script>
+<script>
+
+  (function(tribQuery) {
+
+    var domainTable = { 
+      "apartments.com" : { 
+        "pageName" : "Apartments.com",
+        "channel" : "classified",
+        "hier" : "classified:realestate:apartments",
+        "path" : "class/realestate/apts"
+      },
+      "media.apps.chicagotribune.com" : { 
+        "pageName" : "Apps page",
+        "channel" : "news",
+        "hier" : "news:apps",
+        "path" : "news/local"
+      },
+      "interest.com" : {
+        "pageName" : "Interest.com",
+        "channel" : "business",
+        "hier" : "business:yourmoney",
+        "path" : "biz/yourmoney"
+      },
+      "bizbuysell.com" : {
+        "pageName" : "BizBuySell",
+        "channel" : "classified",
+        "hier" : "classified",
+        "path" : "class"
+      },
+      "cars.com" : {
+        "pageName" : "Cars.com",
+        "channel" : "classified",
+        "hier" : "classified/automotive",
+        "path" : "class/auto"
+      },
+      "careerbuilder.com" : {
+        "pageName" : "CareerBuilder",
+        "channel" : "classified",
+        "hier" : "classified:jobs",
+        "path" : "class/jobs"
+      },
+      "cityfeet.com" : {
+        "pageName" : "CityFeet",
+        "channel" : "classified",
+        "hier" : "classified:realestate",
+        "path" : "class/realestate"
+      },
+      "homefinder.com" : {
+        "pageName" : "Homefinder",
+        "channel" : "classified",
+        "hier" : "classified:realestate",
+        "path" : "class/realestate"
+      },
+      "advapps.trb.com" : {
+        "pageName" : "Garage Sales",
+        "channel" : "classified",
+        "hier" : "classified",
+        "path" : "class/genmerch"
+      },
+      "markets.chicagotribune.com" : {
+        "pageName" : "MarketWatch",
+        "channel" : "business",
+        "hier" : "business:yourmoney",
+        "path" : "biz/topstocks"
+      },
+      "nieonline.com" : {
+        "pageName" : "NIE",
+        "channel" : "classified",
+        "hier" : "classified",
+        "path" : "class"
+      },
+      "sportsnetwork.com" : {
+        "pageName" : "Sports Network",
+        "channel" : "sports",
+        "hier" : "sports",
+        "path" : "sports"
+      },
+      "zap2it.com" : {
+        "pageName" : "Zap2It TV Listings",
+        "channel" : "entertainment",
+        "hier" : "entertainment:tv",
+        "path" : "ent/tv"
+      },
+      "classifieds.chicagotribune.com" : {
+        "pageName" : "Chicago Tribune / classified / listings - Front.",
+        "channel" : "classified",
+        "hier" : "classified",
+        "path" : "class"
+      },
+      "pqarchiver.com" : {
+        "pageName" : "PQ Archiver",
+        "channel" : "services",
+        "hier" : "services:archives",
+        "path" : "extras/archives/pqarchiver"
+      },
+      "local.chicagotribune.com" : {
+        "pageName" : "Local Edge",
+        "channel" : "classified",
+        "hier" : "classified:listings:localedge",
+        "path" : "class/listings"
+      },
+      "live.chicagotribune.com" : {
+        "pageName" : "Scribble Live",
+        "channel" : "news",
+        "hier" : "news",
+        "path" : "news"
+      },
+      "services.trb.com" : {
+        "pageName" : "Services",
+        "channel" : "news",
+        "hier" : "news:test",
+        "path" : "news/test"
+      },
+      "chicagotribune.sportsdirectinc.com" : {
+        "pageName" : "SportsDirect Inc.",
+        "channel" : "sports",
+        "hier" : "sports",
+        "path" : "sports"
+      },
+      "chicagotribune.il-foreclosure.com" : {
+        "pageName" : "Record Information Services - Foreclosures",
+        "channel" : "classified",
+        "hier" : "classified:realestate:foreclosure",
+        "path" : "class/realestate/foreclosure"
+      },
+      "chicagotribune.public-record.com" : {
+        "pageName" : "Record Information Services - Public Records",
+        "channel" : "classified",
+        "hier" : "classified:realestate",
+        "path" : "class/realestate/transact"
+      }
+    };
+
+    var topLevelObject = (window.location != window.parent.location) ? document.referrer: location.href;
+
+    function thirdPartyVariables(omnitureValue) {
+        for (key in domainTable) {
+          if (topLevelObject.indexOf(key) != -1) {
+            var thirdPartyValue = domainTable[key][omnitureValue];
+          }
+        }
+      return thirdPartyValue;
+    }
+
+    window.thirdPartyVariables = thirdPartyVariables;
+
+    tribQuery(document).ready(function() {
+
+      //document.title=thirdPartyVariables("pageName") + " - ChicagoTribune.com";
+
+      s.pageName=thirdPartyVariables("pageName") + " - Chicago Tribune - 3rd Party.";
+      s.server="www.chicagotribune.com";
+      s.channel="Chicago Tribune:" + thirdPartyVariables("channel");
+      s.prop38="3rd Party";
+      s.eVar20="Chicago Tribune";
+      s.eVar21="3rd Party";
+      s.hier1="Chicago Tribune:" + thirdPartyVariables("hier");
+      s.hier2=thirdPartyVariables("hier");
+
+      var s_code=s.t();if(s_code)document.write(s_code)
+    });
+  })(window.jQuery);
+
+</script>
+
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <ul class="nav nav-compact">
+          <li>
+            <a href="#" class="dropdown-toggle"
+                data-toggle="dropdown"><i class="cticon-menu"></i><span class="hidden-phone">&nbsp;Sections</span></a>
+            <ul class="mobile-menu dropdown-menu" role="menu">
+              <li>
+                <a href="http://www.chicagotribune.com">Home</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/news/">News</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/business/">Business</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/sports/">Sports</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/entertainment/">A&amp;E</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/features/">Lifestyles</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/news/opinion/">Opinion</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/classified/realestate/">Real Estate</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/classified/automotive/">Cars</a>
+              </li>
+              <li>
+                <a href="http://www.chicagotribune.com/classified/jobs/">Jobs</a>
+              </li></ul>
+          </li>
+        </ul>
+
+        <a class="brand" href="http://www.chicagotribune.com"><img class="ct-logo"
+          src="http://media.apps.chicagotribune.com/images/logo_inverse.png"
+          title="Chicago Tribune" alt="Chicago Tribune"/></a>
+
+        <ul class="nav nav-full">
+          <li>
+            <a href="http://www.chicagotribune.com">Home</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/news/">News</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/business/">Business</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/sports/">Sports</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/entertainment/">A&amp;E</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/features/">Lifestyles</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/news/opinion/">Opinion</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/classified/realestate/">Real Estate</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/classified/automotive/">Cars</a>
+          </li>
+          <li>
+            <a href="http://www.chicagotribune.com/classified/jobs/">Jobs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="leaderboard">
+  <!-- Start: GPT Async -->
+<script type='text/javascript'>
+  var gptadslots=[];
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  (function(){ var gads = document.createElement('script');
+    gads.async = true; gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+  })();
+</script>
+
+<script type="text/javascript">
+  googletag.cmd.push(function() {
+
+    //Adslot 1 declaration
+    gptadslots[1]= googletag.defineSlot('/4011/trb.chicagotribune/class/realestate/transact', [[728,90]],'div-gpt-ad-370583144757594180-1').setTargeting('pos',['1']).addService(googletag.pubads());
+
+    googletag.pubads().setTargeting('ptype',['s']);
+    googletag.pubads().enableAsyncRendering();
+    googletag.enableServices();
+  });
+</script>
+<!-- End: GPT -->
+
+<!-- Beginning Async AdSlot 1 for Ad unit trb.chicagotribune/class/realestate/transact  ### size: [[728,90]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-370583144757594180-1'>
+  <script type='text/javascript'>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-370583144757594180-1'); });
+  </script>
+</div>
+<!-- End AdSlot 1 -->
+  </div>
+
+<!-- =================================================================== -->
+<!-- ================= RIS CONTENT START =============================== -->	
+<!-- =================================================================== -->
+
+	 
+<table id="ris_content"><tr><td valign="top">
+	
+	<div id="ris_span_title">
+		<div style="font-size: 10px; color: #666;">
+			<div style="float: right;"><em>Powered by Record Information Services</em></div>
+			
+<a href="http://www.chicagotribune.com/"  title="Home"  >Home</a> &gt; <a href="http://www.chicagotribune.com/classified/realestate/"  title="Chicago Homes"  >Chicago Homes</a> &gt; <a href="http://chicagotribune.public-record.com/realestate/"  title="Latest Sales Search"  >Latest Sales Search</a> &gt; Results		</div>
+		
+		<div id="record_count">Total Records Available<h4>6,359,623</h4></div>
+		Search Results for Lake&nbsp;County
+	</div>
+	
+	<div class="clear"></div>
+	
+	
+	
+	
+	
+	<div id="ris_span_content">
+		<div><p></p>
+</div><br />
+<table cellspacing="0" id="dataTable"><tr><th colspan="4"><strong>Showing locations in Lake County, Illinois</strong></th></tr>
+<tr><td><div id="map" style="display:block; height: 300px; margin:0; border: 1px solid #ccc;"></div></td>
+</tr>
+</table>
+
+
+<div style="float: left"><strong>Showing 6,316 to 6330 of 7,000 Record(s) Found</strong></div><div class="text-center"><div class="pagination text-center"><a href="http://chicagotribune.public-record.com/realestate/results/1/date:desc"  title="&laquo; First"  >&laquo; First</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/421/date:desc"  title="&lt;"  >&lt;</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/419/date:desc"  title="419"  >419</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/420/date:desc"  title="420"  >420</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/421/date:desc"  title="421"  >421</a>&nbsp;<strong>&nbsp;422&nbsp;</strong>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/423/date:desc"  title="423"  >423</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/424/date:desc"  title="424"  >424</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/425/date:desc"  title="425"  >425</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/423/date:desc"  title="&gt;"  >&gt;</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/468/date:desc"  title="Last &raquo;"  >Last &raquo;</a></div></div><div class="clear"></div>
+<div id="risCheckout_box"><h3>See the whole public record!</h3><table id="nothing" cellspacing="0"><tr><td  style="width: 35%;vertical-align:top; "  class="spec"><ul>
+<li>Property Type</li>
+
+<li>Subdivision</li>
+
+<li>Buyer Marital Status</li>
+
+<li class="last">Census Tract Information</li>
+
+</ul>
+
+</td>
+
+<td  style="width: 35%;vertical-align:top; "  class=""><ul>
+<li>Pin Number</li>
+
+<li>Down Payment</li>
+
+<li>Census Age</li>
+
+<li class="last">More!</li>
+
+</ul>
+
+</td>
+
+<td  style="width: 30%;vertical-align:top; "  class="">Just click <strong>ADD TO CART</strong> on the individual records below to purchase.<p><em>*Not all details may<br />
+be available for every record.</em></p>
+</td>
+
+</tr>
+</table>
+
+
+<div id="risCheckout"><a href="http://chicagotribune.public-record.com/basket"  title="Checkout to Purchase Real Estate Records"  ><strong>Checkout to Purchase Real Estate Records</strong></a></div>
+</div><br />
+<strong><a href="http://chicagotribune.public-record.com/realestate/search/lake"  title="Start a New Search"  >Start a New Search</a> | <a href="#refine"  title="Refine your Current Search"  >Refine your Current Search</a> | <a href='javascript:void(0);' onclick="window.open('/common/field_definitions/21', '_blank', 'width=600,height=500,scrollbars=yes,status=yes,resizable=yes,screenx=50%,screeny=50%');"  title="Explanation of the Record Details"  >Explanation of the Record Details</a></strong><br />
+<br />
+<table id="dataTable" cellspacing="0" border="0"><tr><th  >Marker</th><th  ><a href="http://chicagotribune.public-record.com/realestate/results/422/price:desc"  title="Sort by Price"  >Sort by Price</a></th><th  class="sort_asc"><a href="http://chicagotribune.public-record.com/realestate/results/422/date:asc"  title="Sort by Date"  class="sort_asc" >Sort by Date</a></th></tr>
+<tr><td align="center"  class=""><strong>A</strong></td>
+<td  class="">$129,500.00<br />
+302 FARMINGDALE CIR , VERNON HILLS, 60061-1910<em><br />
+SERGIO SALAZAR VELEZ sold to YIWEN WU</em></td>
+<td align="right"  class="">07/15/16<br />
+<div id="587698-lake"><a href="javascript: addToCart('302+FARMINGDALE+CIR+%2C+VERNON+HILLS%2C+60061%2D1910',587698,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class="alt"><strong>B</strong></td>
+<td  class="alt">$209,000.00<br />
+764 S MONTCLAIR DR , ROUND LAKE, 60073-5422<em><br />
+MUNYOUNG LEE sold to RISIKAT BARUWA</em></td>
+<td align="right"  class="alt">07/15/16<br />
+<div id="587696-lake"><a href="javascript: addToCart('764+S+MONTCLAIR+DR+%2C+ROUND+LAKE%2C+60073%2D5422',587696,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class=""><strong>C</strong></td>
+<td  class="">$167,000.00<br />
+36145 N HELENDALE RD , INGLESIDE, 60041-8215<em><br />
+PAUL D TORGENSEN sold to NORMA S DELGADO</em></td>
+<td align="right"  class="">07/15/16<br />
+<div id="587695-lake"><a href="javascript: addToCart('36145+N+HELENDALE+RD+%2C+INGLESIDE%2C+60041%2D8215',587695,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class="alt"><strong>D</strong></td>
+<td  class="alt">$806,000.00<br />
+19 BRIAR CREEK DR , HAWTHORN WOODS, 60047-8418<em><br />
+DAVID M CHAPMAN sold to WILLIAM F CASTONZO</em></td>
+<td align="right"  class="alt">07/15/16<br />
+<div id="587693-lake"><a href="javascript: addToCart('19+BRIAR+CREEK+DR+%2C+HAWTHORN+WOODS%2C+60047%2D8418',587693,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class=""><strong>E</strong></td>
+<td  class="">$96,000.00<br />
+4125 BRENTWOOD LN , WAUKEGAN, 60087-1810<em><br />
+MARITZA C MORALES sold to STEVEN M KEATING</em></td>
+<td align="right"  class="">07/15/16<br />
+<div id="587692-lake"><a href="javascript: addToCart('4125+BRENTWOOD+LN+%2C+WAUKEGAN%2C+60087%2D1810',587692,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class="alt"><strong>F</strong></td>
+<td  class="alt">$245,000.00<br />
+1120 S PLEASANT HILL GATE , WAUKEGAN, 60085-8614<em><br />
+MARIA THERESA MAHINAY sold to AUGUST JOHN ANTHONY T VILLA</em></td>
+<td align="right"  class="alt">07/15/16<br />
+<div id="587691-lake"><a href="javascript: addToCart('1120+S+PLEASANT+HILL+GATE+%2C+WAUKEGAN%2C+60085%2D8614',587691,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class=""><strong>G</strong></td>
+<td  class="">$362,000.00<br />
+184 E FOX HILL DR , BUFFALO GROVE, 60089-1520<em><br />
+LEE L GUO sold to ZHONG LI</em></td>
+<td align="right"  class="">07/15/16<br />
+<div id="587690-lake"><a href="javascript: addToCart('184+E+FOX+HILL+DR+%2C+BUFFALO+GROVE%2C+60089%2D1520',587690,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class="alt"><strong>H</strong></td>
+<td  class="alt">$830,000.00<br />
+840 WOODWARD AVE , DEERFIELD, 60015-2865<em><br />
+TWO MOONS 7 LLC sold to WILLIAM P WALLENSTEIN</em></td>
+<td align="right"  class="alt">07/15/16<br />
+<div id="587689-lake"><a href="javascript: addToCart('840+WOODWARD+AVE+%2C+DEERFIELD%2C+60015%2D2865',587689,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class=""><strong>I</strong></td>
+<td  class="">$124,000.00<br />
+253 APPLETREE CT , BUFFALO GROVE, 60089-1733</td>
+<td align="right"  class="">07/15/16<br />
+<div id="587687-lake"><a href="javascript: addToCart('253+APPLETREE+CT+%2C+BUFFALO+GROVE%2C+60089%2D1733',587687,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class="alt"><strong>J</strong></td>
+<td  class="alt">$315,000.00<br />
+18227 W MEANDER DR , GRAYSLAKE, 60030-4000<em><br />
+HEATHER WICKS sold to JONATHAN E YOUNG</em></td>
+<td align="right"  class="alt">07/15/16<br />
+<div id="587686-lake"><a href="javascript: addToCart('18227+W+MEANDER+DR+%2C+GRAYSLAKE%2C+60030%2D4000',587686,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class=""><strong>K</strong></td>
+<td  class="">$245,000.00<br />
+704 DIAMOND LAKE RD 6, MUNDELEIN, 60060-3564<em><br />
+DANIEL L HODGKINSON sold to SCOTT WEINSTEIN</em></td>
+<td align="right"  class="">07/15/16<br />
+<div id="587685-lake"><a href="javascript: addToCart('704+DIAMOND+LAKE+RD+6%2C+MUNDELEIN%2C+60060%2D3564',587685,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class="alt"><strong>L</strong></td>
+<td  class="alt">$488,500.00<br />
+405 CARTER ST , LIBERTYVILLE, 60048-2623<em><br />
+LAZZARETTO CONSTRUCTION CO sold to KURT A WOOLFORD</em></td>
+<td align="right"  class="alt">07/15/16<br />
+<div id="587684-lake"><a href="javascript: addToCart('405+CARTER+ST+%2C+LIBERTYVILLE%2C+60048%2D2623',587684,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class=""><strong>M</strong></td>
+<td  class="">$129,900.00<br />
+1136 SIMPSON DR , MUNDELEIN, 60060-4126<em><br />
+208 FINA IP LLC sold to MARTHA C ESCOBAR</em></td>
+<td align="right"  class="">07/15/16<br />
+<div id="587681-lake"><a href="javascript: addToCart('1136+SIMPSON+DR+%2C+MUNDELEIN%2C+60060%2D4126',587681,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class="alt"><strong>N</strong></td>
+<td  class="alt">$495,000.00<br />
+70 HICKORY LN , LINCOLNSHIRE, 60069-3122<em><br />
+STEVEN J LIEBERMAN sold to KAI S RUDLOFF</em></td>
+<td align="right"  class="alt">07/15/16<br />
+<div id="587680-lake"><a href="javascript: addToCart('70+HICKORY+LN+%2C+LINCOLNSHIRE%2C+60069%2D3122',587680,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+<tr><td align="center"  class=""><strong>O</strong></td>
+<td  class="">$62,000.00<br />
+980 N LAKESIDE DR 2B, VERNON HILLS, 60061-2671<em><br />
+MIDFIRST BANK sold to USHA AGARWAL</em></td>
+<td align="right"  class="">07/15/16<br />
+<div id="587679-lake"><a href="javascript: addToCart('980+N+LAKESIDE+DR+2B%2C+VERNON+HILLS%2C+60061%2D2671',587679,'lake', 're')">Add to Cart</a></div></td>
+</tr>
+</table>
+
+
+<div class="text-center"><div class="pagination text-center"><a href="http://chicagotribune.public-record.com/realestate/results/1/date:desc"  title="&laquo; First"  >&laquo; First</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/421/date:desc"  title="&lt;"  >&lt;</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/419/date:desc"  title="419"  >419</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/420/date:desc"  title="420"  >420</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/421/date:desc"  title="421"  >421</a>&nbsp;<strong>&nbsp;422&nbsp;</strong>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/423/date:desc"  title="423"  >423</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/424/date:desc"  title="424"  >424</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/425/date:desc"  title="425"  >425</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/423/date:desc"  title="&gt;"  >&gt;</a>&nbsp;<a href="http://chicagotribune.public-record.com/realestate/results/468/date:desc"  title="Last &raquo;"  >Last &raquo;</a></div></div><div class="clear"></div>
+<div id="risCheckout_box"><h3>See the whole public record!</h3><table id="nothing" cellspacing="0"><tr><td  style="width: 35%;vertical-align:top; "  class="spec"><ul>
+<li>Property Type</li>
+
+<li>Subdivision</li>
+
+<li>Buyer Marital Status</li>
+
+<li class="last">Census Tract Information</li>
+
+</ul>
+
+</td>
+
+<td  style="width: 35%;vertical-align:top; "  class=""><ul>
+<li>Pin Number</li>
+
+<li>Down Payment</li>
+
+<li>Census Age</li>
+
+<li class="last">More!</li>
+
+</ul>
+
+</td>
+
+<td  style="width: 30%;vertical-align:top; "  class="">Just click <strong>ADD TO CART</strong> on the individual records below to purchase.<p><em>*Not all details may<br />
+be available for every record.</em></p>
+</td>
+
+</tr>
+</table>
+
+
+<div id="risCheckout"><a href="http://chicagotribune.public-record.com/basket"  title="Checkout to Purchase Real Estate Records"  ><strong>Checkout to Purchase Real Estate Records</strong></a></div>
+</div><a name="refine"></a><form METHOD="POST" action="/realestate/search/lake" NAME="theForm" id="theForm" onSubmit="return ValidateForm()">
+<input type="hidden" name="zipcode" id="zipcode" value="" /><input type="hidden" name="city" id="city" value="" /><div id="refine"><h4>Refine your Search</h4><table cellspacing="0" border="0"><tr><td><strong>Input Date (mm/dd/yyyy)</strong><br />
+<input id="sdate" name="sdate" value="7/25/2016" style="width:150px;"   maxlength="50" /> - <input type="text" name="edate" value="1/25/2017" style="width:150px;"   maxlength="50" /></td>
+<td style="padding: 0 0 0 30px;" valign="top" rowspan="2"><strong>Property type</strong><br />
+<select class="multi_select"  id="property_type" name="property_type"style="height:85px;width:180px;"  multiple="multiple">
+<option value="" selected="selected">&lt All Records &gt;<option value="Apartment Building">Apartment Building<option value="Commercial">Commercial<option value="Farm Land">Farm Land<option value="Industrial">Industrial<option value="Residential">Residential<option value="Vacant Commercial">Vacant Commercial<option value="Vacant Industrial">Vacant Industrial<option value="Vacant Residential">Vacant Residential<option value="Condominium">Condominium<option value="Townhome">Townhome<option value="Government">Government<option value="2nd">Second Home</select></td>
+</tr>
+<tr><td><strong>Purchase Price (250000 - 300000)</strong><br />
+<input type="text" name="spurchaseprice" value="" style="width:150px;"   maxlength="50" /> - <input type="text" name="epurchaseprice" value="" style="width:150px;"   maxlength="50" /></td>
+</tr>
+<tr><td><strong>Street Name</strong><br />
+<input type="text" name="streetname1" value="" style="width:150px;"   maxlength="50" /></td>
+<td style="padding: 0 0 0 30px;"><br />
+<input class="btn btn-default" type="submit" name="submit" value="Refine Your Search" /></td>
+</tr>
+</table>
+</div><br />
+<br />
+<div class="clear"></div><div class="green_box"><a name="otherproperties"></a><h3>Illinois Neighborhood Public Records - <a href="http://chicagotribune.public-record.com/property/search"  title="Search by Address"  >Search by&nbsp;Address</a></h3>
+<table width="100%"><tr><td width="50%" valign="top"><ul><li><a href="http://chicagotribune.public-record.com/property/tazewell/060621210009/1021-e-marshall-st"  title="1021 E Marshall St"  >1021 E Marshall St</a><li><a href="http://chicagotribune.public-record.com/property/tazewell/070716200017/113-fay-st"  title="113 Fay St"  >113 Fay St</a><li><a href="http://chicagotribune.public-record.com/property/tazewell/010134105007/1705-e-washington-st"  title="1705 E Washington St"  >1705 E Washington St</a><li><a href="http://chicagotribune.public-record.com/property/tazewell/07-07-09-415-007/313-e-3rd-ave"  title="313 E 3rd Ave"  >313 E 3rd Ave</a><li><a href="http://chicagotribune.public-record.com/property/tazewell/040425104030/2411-n-parkway-dr"  title="2411 N Parkway Dr"  >2411 N Parkway Dr</a></ul>
+</td>
+<td width="50%" valign="top"><ul><li><a href="http://chicagotribune.public-record.com/property/tazewell/060621206037/345-north-dr"  title="345 North Dr"  >345 North Dr</a><li><a href="http://chicagotribune.public-record.com/property/tazewell/020219406009/115-florida-ave"  title="115 Florida Ave"  >115 Florida Ave</a><li><a href="http://chicagotribune.public-record.com/property/tazewell/040435223003/1114-n-15th-st"  title="1114 N 15th St"  >1114 N 15th St</a><li><a href="http://chicagotribune.public-record.com/property/tazewell/041001419005/2109-sunset-dr"  title="2109 Sunset Dr"  >2109 Sunset Dr</a></td>
+</tr>
+</table>
+<div class="clear"></div></div>
+
+	</div>
+
+</td>
+<td valign="top" width="320">
+<div style="padding: 10px 0 0 10px; width: 310px; float:left;">
+		<!-- Start: GPT Async -->
+<script type='text/javascript'>
+	var gptadslots=[];
+	var googletag = googletag || {};
+	googletag.cmd = googletag.cmd || [];
+	(function(){ var gads = document.createElement('script');
+		gads.async = true; gads.type = 'text/javascript';
+		var useSSL = 'https:' == document.location.protocol;
+		gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+		var node = document.getElementsByTagName('script')[0];
+		node.parentNode.insertBefore(gads, node);
+	})();
+</script>
+
+<script type="text/javascript">
+	googletag.cmd.push(function() {
+
+		//Adslot 1 declaration
+		gptadslots[1]= googletag.defineSlot('/4011/trb.chicagotribune/class/realestate/transact', [[160,600]],'div-gpt-ad-827154841673454596-1').setTargeting('pos',['1']).addService(googletag.pubads());
+
+		googletag.pubads().setTargeting('ptype',['sf']);
+		googletag.pubads().enableAsyncRendering();
+		googletag.enableServices();
+	});
+</script>
+<!-- End: GPT -->
+
+
+
+<!-- Beginning Async AdSlot 1 for Ad unit trb.chicagotribune/class/realestate/transact  ### size: [[160,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-827154841673454596-1'>
+	<script type='text/javascript'>
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-827154841673454596-1'); });
+	</script>
+</div>
+<!-- End AdSlot 1 -->
+
+</div>
+
+</td>
+
+</tr>
+<tr>
+<td colspan="2">
+	<div id="ris_span_content">
+		
+		<div class="hrGrey"><hr /></div>
+		<p>
+			All content copyright &copy; 1997 - 
+			
+2017			by Record Information Services, Inc.
+			<br />
+			
+<a href="http://chicagotribune.public-record.com/realestate"  title="New Search"  >New Search</a>			 | 
+<a href="http://chicagotribune.public-record.com/realestate/articles"  title="Real Estate Articles"  >Real Estate Articles</a>			 | 
+<a href="http://chicagotribune.public-record.com/realestate/about-us"  title="About Us"  >About Us</a>			 | 
+<a href="http://chicagotribune.public-record.com/realestate/disclaimer"  title="Disclaimer"  >Disclaimer</a>			 | 
+<a href="http://chicagotribune.public-record.com/realestate/faq"  title="Frequently Asked Questions"  >Frequently Asked Questions</a>			<br />
+			
+<a href="http://consumer.public-record.com/?src=ctre"  title="Check Illinois"  >Check Illinois</a>			 |
+<a href="http://watch.public-record.com/src/ctre"  title="Watch Illinois"  >Watch Illinois</a>			 |
+<a href="http://realestate.public-record.com/src/ctre"  title="Real Estate Illinois"  >Real Estate Illinois</a>			 |
+<a href="http://www.public-record.com/content/general/api_fc.asp?src=ctre"  title="Foreclosure API"  >Foreclosure API</a>			<div>
+				
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<div style="padding: 6px 0 0 0; font-style: italic">
+<em>
+<a href="https://www.facebook.com/recordinfoservices" class="social_fb_like" target="_blank">Like our Facebook page</a>
+</em>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ebe99ad280fc0af"></script>
+<!-- AddThis Button END -->
+			</div>
+		</p>
+		<div id="ris_powerby">
+			<strong>This Page Powered by: </strong>
+			
+<a href="http://www.public-record.com/?src=ctre"  title="Record Information Services"  >Record Information Services</a>		</div>
+	</div>
+</td>
+</tr>
+</table>
+
+<!-- =================================================================== -->
+<!-- ================= RIS CONTENT END ================================= -->	
+<!-- =================================================================== -->
+
+
+
+
+<script language="JavaScript">
+
+    var s_account = "tribglobal";
+
+</script>
+
+<!-- START OMNITURE // hive:metrics-tribune -->
+<!-- SiteCatalyst code version: H.1.
+Copyright 1997-2005 Omniture, Inc. More info available at
+http://www.omniture.com -->
+
+	<script type="text/javascript">adblock=true;</script>
+	<script type="text/javascript" src="http://www.chicagotribune.com/hive/javascripts/metrics/adframe.js"></script>
+	
+  <script type="text/javascript" src="http://www.chicagotribune.com/hive/javascripts/metrics/s_code_trb.js"></script>
+
+  <script language="JavaScript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//--></script><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.1. -->
+
+
+
+
+<script type="text/javascript">
+function initMap() {
+	var mapOptions = { 
+		center: new google.maps.LatLng(42.2329508566937,-87.9763740142024), 
+	  	zoom: 8, 
+	  	mapTypeId: google.maps.MapTypeId.ROADMAP 
+	}; 
+	
+   var map = new google.maps.Map( document.getElementById("map"), mapOptions); 
+   var markera = new google.maps.Marker({
+	position: new google.maps.LatLng(42.2329508566937, -87.9763740142024),
+	map: map,
+	title: 'Price: $129,500.00', 
+	icon: '/public/icons/blue_MarkerA.png' 
+});
+var infowindowa = new google.maps.InfoWindow({
+content: 'Price: $129,500.00<br />302 FARMINGDALE CIR , VERNON HILLS, 60061-1910<em><br />SERGIO SALAZAR VELEZ sold to YIWEN WU</em><br />' 
+});
+google.maps.event.addListener(markera, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowa.open(map, markera);
+});
+var markerb = new google.maps.Marker({
+	position: new google.maps.LatLng(0, 0),
+	map: map,
+	title: 'Price: $209,000.00', 
+	icon: '/public/icons/blue_MarkerB.png' 
+});
+var infowindowb = new google.maps.InfoWindow({
+content: 'Price: $209,000.00<br />764 S MONTCLAIR DR , ROUND LAKE, 60073-5422<em><br />MUNYOUNG LEE sold to RISIKAT BARUWA</em><br />' 
+});
+google.maps.event.addListener(markerb, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowb.open(map, markerb);
+});
+var markerc = new google.maps.Marker({
+	position: new google.maps.LatLng(42.3894606228394, -88.1452830143597),
+	map: map,
+	title: 'Price: $167,000.00', 
+	icon: '/public/icons/blue_MarkerC.png' 
+});
+var infowindowc = new google.maps.InfoWindow({
+content: 'Price: $167,000.00<br />36145 N HELENDALE RD , INGLESIDE, 60041-8215<em><br />PAUL D TORGENSEN sold to NORMA S DELGADO</em><br />' 
+});
+google.maps.event.addListener(markerc, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowc.open(map, markerc);
+});
+var markerd = new google.maps.Marker({
+	position: new google.maps.LatLng(42.2645, -88.0748),
+	map: map,
+	title: 'Price: $806,000.00', 
+	icon: '/public/icons/blue_MarkerD.png' 
+});
+var infowindowd = new google.maps.InfoWindow({
+content: 'Price: $806,000.00<br />19 BRIAR CREEK DR , HAWTHORN WOODS, 60047-8418<em><br />DAVID M CHAPMAN sold to WILLIAM F CASTONZO</em><br />' 
+});
+google.maps.event.addListener(markerd, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowd.open(map, markerd);
+});
+var markere = new google.maps.Marker({
+	position: new google.maps.LatLng(42.39488, -87.90556),
+	map: map,
+	title: 'Price: $96,000.00', 
+	icon: '/public/icons/blue_MarkerE.png' 
+});
+var infowindowe = new google.maps.InfoWindow({
+content: 'Price: $96,000.00<br />4125 BRENTWOOD LN , WAUKEGAN, 60087-1810<em><br />MARITZA C MORALES sold to STEVEN M KEATING</em><br />' 
+});
+google.maps.event.addListener(markere, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowe.open(map, markere);
+});
+var markerf = new google.maps.Marker({
+	position: new google.maps.LatLng(42.34032, -87.90834),
+	map: map,
+	title: 'Price: $245,000.00', 
+	icon: '/public/icons/blue_MarkerF.png' 
+});
+var infowindowf = new google.maps.InfoWindow({
+content: 'Price: $245,000.00<br />1120 S PLEASANT HILL GATE , WAUKEGAN, 60085-8614<em><br />MARIA THERESA MAHINAY sold to AUGUST JOHN ANTHONY T VILLA</em><br />' 
+});
+google.maps.event.addListener(markerf, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowf.open(map, markerf);
+});
+var markerg = new google.maps.Marker({
+	position: new google.maps.LatLng(42.1631174212947, -87.9548686168501),
+	map: map,
+	title: 'Price: $362,000.00', 
+	icon: '/public/icons/blue_MarkerG.png' 
+});
+var infowindowg = new google.maps.InfoWindow({
+content: 'Price: $362,000.00<br />184 E FOX HILL DR , BUFFALO GROVE, 60089-1520<em><br />LEE L GUO sold to ZHONG LI</em><br />' 
+});
+google.maps.event.addListener(markerg, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowg.open(map, markerg);
+});
+var markerh = new google.maps.Marker({
+	position: new google.maps.LatLng(42.168021, -87.856019),
+	map: map,
+	title: 'Price: $830,000.00', 
+	icon: '/public/icons/blue_MarkerH.png' 
+});
+var infowindowh = new google.maps.InfoWindow({
+content: 'Price: $830,000.00<br />840 WOODWARD AVE , DEERFIELD, 60015-2865<em><br />TWO MOONS 7 LLC sold to WILLIAM P WALLENSTEIN</em><br />' 
+});
+google.maps.event.addListener(markerh, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowh.open(map, markerh);
+});
+var markeri = new google.maps.Marker({
+	position: new google.maps.LatLng(42.15731025688, -87.9821099484881),
+	map: map,
+	title: 'Price: $124,000.00', 
+	icon: '/public/icons/blue_MarkerI.png' 
+});
+var infowindowi = new google.maps.InfoWindow({
+content: 'Price: $124,000.00<br />253 APPLETREE CT , BUFFALO GROVE, 60089-1733<br />' 
+});
+google.maps.event.addListener(markeri, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowi.open(map, markeri);
+});
+var markerj = new google.maps.Marker({
+	position: new google.maps.LatLng(42.36119, -87.98862),
+	map: map,
+	title: 'Price: $315,000.00', 
+	icon: '/public/icons/blue_MarkerJ.png' 
+});
+var infowindowj = new google.maps.InfoWindow({
+content: 'Price: $315,000.00<br />18227 W MEANDER DR , GRAYSLAKE, 60030-4000<em><br />HEATHER WICKS sold to JONATHAN E YOUNG</em><br />' 
+});
+google.maps.event.addListener(markerj, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowj.open(map, markerj);
+});
+var markerk = new google.maps.Marker({
+	position: new google.maps.LatLng(42.254188, -88.001224),
+	map: map,
+	title: 'Price: $245,000.00', 
+	icon: '/public/icons/blue_MarkerK.png' 
+});
+var infowindowk = new google.maps.InfoWindow({
+content: 'Price: $245,000.00<br />704 DIAMOND LAKE RD 6, MUNDELEIN, 60060-3564<em><br />DANIEL L HODGKINSON sold to SCOTT WEINSTEIN</em><br />' 
+});
+google.maps.event.addListener(markerk, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowk.open(map, markerk);
+});
+var markerl = new google.maps.Marker({
+	position: new google.maps.LatLng(42.280302, -87.964232),
+	map: map,
+	title: 'Price: $488,500.00', 
+	icon: '/public/icons/blue_MarkerL.png' 
+});
+var infowindowl = new google.maps.InfoWindow({
+content: 'Price: $488,500.00<br />405 CARTER ST , LIBERTYVILLE, 60048-2623<em><br />LAZZARETTO CONSTRUCTION CO sold to KURT A WOOLFORD</em><br />' 
+});
+google.maps.event.addListener(markerl, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowl.open(map, markerl);
+});
+var markerm = new google.maps.Marker({
+	position: new google.maps.LatLng(42.24747, -88.00095),
+	map: map,
+	title: 'Price: $129,900.00', 
+	icon: '/public/icons/blue_MarkerM.png' 
+});
+var infowindowm = new google.maps.InfoWindow({
+content: 'Price: $129,900.00<br />1136 SIMPSON DR , MUNDELEIN, 60060-4126<em><br />208 FINA IP LLC sold to MARTHA C ESCOBAR</em><br />' 
+});
+google.maps.event.addListener(markerm, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowm.open(map, markerm);
+});
+var markern = new google.maps.Marker({
+	position: new google.maps.LatLng(42.198603199197, -87.9094972400315),
+	map: map,
+	title: 'Price: $495,000.00', 
+	icon: '/public/icons/blue_MarkerN.png' 
+});
+var infowindown = new google.maps.InfoWindow({
+content: 'Price: $495,000.00<br />70 HICKORY LN , LINCOLNSHIRE, 60069-3122<em><br />STEVEN J LIEBERMAN sold to KAI S RUDLOFF</em><br />' 
+});
+google.maps.event.addListener(markern, 'click', function() {
+// Calling the open method of the infoWindow
+infowindown.open(map, markern);
+});
+var markero = new google.maps.Marker({
+	position: new google.maps.LatLng(42.223298, -87.984786),
+	map: map,
+	title: 'Price: $62,000.00', 
+	icon: '/public/icons/blue_MarkerO.png' 
+});
+var infowindowo = new google.maps.InfoWindow({
+content: 'Price: $62,000.00<br />980 N LAKESIDE DR 2B, VERNON HILLS, 60061-2671<em><br />MIDFIRST BANK sold to USHA AGARWAL</em><br />' 
+});
+google.maps.event.addListener(markero, 'click', function() {
+// Calling the open method of the infoWindow
+infowindowo.open(map, markero);
+});
+}
+window.onload = initMap;
+</script>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ 
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); 
+ga('create', 'UA-378941-12', 'public-record.com');
+ga('send', 'pageview');
+</script>
+
+<!-- Start Quantcast tag -->
+<script type="text/javascript">
+_qoptions={
+qacct:"p-7aRfUIOnJjhaQ" 
+};
+</script>
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+<noscript>
+<img src="http://edge.quantserve.com/pixel/p-7aRfUIOnJjhaQ.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast" />
+</noscript>
+<!-- End Quantcast tag -->
+
+</body>
+</html>
+<!-- chicagotribune.public-record.com (JEFFERSON), 192.168.213.76, Rendered: 1/27/2017 8:50:56 PM -->
